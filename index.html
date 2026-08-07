@@ -3,28 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BudX - Cannabis Plant Tracking</title>
+    <title>BudX - Complete Cultivation Management</title>
     <style>
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-            text-align: center; 
-            padding: 50px 20px; 
-            max-width: 600px; 
-            margin: 0 auto;
+        /* CSS Variables matching the logo's neon aesthetic */
+        :root {
+            --bg-color: #111418;
+            --surface-color: #1a1d21;
+            --text-main: #f0f0f0;
+            --text-muted: #a0aab2;
+            --neon-green: #7fd661;
+            --neon-cyan: #baf5f9;
+            --accent-glow: 0 0 10px rgba(127, 214, 97, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             line-height: 1.6;
         }
-        h1 { color: #059669; }
-        a { color: #059669; font-weight: bold; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+
+        /* Navigation */
+        header {
+            background-color: var(--surface-color);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #2a2e33;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: 50px;
+            border-radius: 12px;
+            box-shadow: var(--accent-glow);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--neon-green);
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            color: #ffffff;
+            text-shadow: 0 0 8px var(--neon-cyan);
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--neon-green);
+        }
+
+        /* Main Sections */
+        section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--neon-green);
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--neon-green);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Hero / Marketing Section */
+        .hero {
+            text-align: center;
+            padding: 100px 5%;
+        }
+
+        .hero p {
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--neon-green);
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: var(--accent-glow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(127, 214, 97, 0.7);
+        }
+
+        /* Support & FAQ Layout */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .faq-item {
+            background-color: var(--surface-color);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--neon-green);
+        }
+
+        .faq-item h3 {
+            color: var(--text-main);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-box {
+            background-color: var(--surface-color);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+            border: 1px solid #2a2e33;
+        }
+
+        .contact-box a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Privacy Policy text */
+        .privacy-content {
+            background-color: var(--surface-color);
+            padding: 40px;
+            border-radius: 12px;
+        }
+
+        .privacy-content h3 {
+            margin-top: 30px;
+            color: var(--neon-cyan);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--surface-color);
+            color: var(--text-muted);
+            border-top: 1px solid #2a2e33;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none; /* Simplifies mobile view, header logo acts as home */
+            }
+            h1 { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
-    <h1>BudX</h1>
-    <p>Your comprehensive cannabis plant tracking and management tool.</p>
-    
-    <nav>
-        <a href__="support.html">Support</a> | 
-        <a href__="privacy.html">Privacy Policy</a>
-    </nav>
+
+    <header>
+        <a href="#" class="logo-container">
+            <img src="image0.jpeg" alt="BudX Logo" class="logo-img">
+            <div class="logo-text">Bud<span>X</span></div>
+        </a>
+        <nav>
+            <a href="#marketing">App Overview</a>
+            <a href="#support">Support & FAQ</a>
+            <a href="#privacy">Privacy Policy</a>
+        </nav>
+    </header>
+
+    <!-- Marketing Section (Apple Connect: Marketing URL) -->
+    <section id="marketing" class="hero">
+        <h1>Your Complete Cultivation Companion</h1>
+        <p>BudX is a mobile app built to give plant growers complete, real-time control over their garden environments. Whether you’re dialing in daily climate schedules, tracking complex feeding regimens, or monitoring growth cycles from seed to harvest, BudX brings all your cultivation data into one clean interface.</p>
+        <p>Track environmental metrics, set automated alerts, log journal entries, and optimize yields—all from your smartphone.</p>
+        <a href="#" class="cta-button">Download on the App Store</a>
+    </section>
+
+    <!-- Support Section (Apple Connect: Support URL) -->
+    <section id="support">
+        <h2>Support & FAQ</h2>
+        <p>Need help dialing in your environment or navigating the app? Check our common questions below or reach out directly.</p>
+
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3>How do I set up automated alerts?</h3>
+                <p>Navigate to the 'Environment' tab, select your current grow space, and tap the bell icon in the top right. From there, you can set custom thresholds for temperature and humidity drift.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I export my grow logs?</h3>
+                <p>Yes. Go to your 'Journal Entries' screen, select a completed harvest cycle, and tap 'Export Data' to generate a full report of your feeding and climate history.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How do I request Account and Data Deletion?</h3>
+                <p><strong>Required Data Deletion:</strong> If you wish to permanently delete your BudX account and all associated cultivation data/telemetry, please email us directly at <strong>support@budx.info</strong> from the email address associated with your account. We will process your complete data erasure within 7 business days.</p>
+            </div>
+        </div>
+
+        <div class="contact-box">
+            <h3>Still need help?</h3>
+            <p>Our support team is ready to assist you.</p>
+            <a href="mailto:support@budx.info">Email us: support@budx.info</a>
+        </div>
+    </section>
+
+    <!-- Privacy Policy Section (Apple Connect: Privacy Policy URL) -->
+    <section id="privacy">
+        <h2>Privacy Policy</h2>
+        <div class="privacy-content">
+            <p><strong>Effective Date:</strong> January 1, 2026</p>
+            
+            <h3>1. Information We Collect</h3>
+            <p>BudX collects essential account information (such as your email address) to maintain your profile. We also collect the cultivation data you input into the app, including climate schedules, feeding regimens, and journal entries, to provide you with historical tracking and analytics.</p>
+
+            <h3>2. How We Use Your Data</h3>
+            <p>Your data is used strictly to power the BudX app experience. We use your telemetry and log data to generate your personalized charts, trigger your automated alerts, and help you optimize your yields. We do not sell your personal data or garden metrics to third parties.</p>
+
+            <h3>3. Data Storage and Security</h3>
+            <p>We implement industry-standard security measures to ensure your cultivation logs and personal information are stored safely and securely. All telemetry sent between the app and our servers is encrypted.</p>
+
+            <h3>4. Your Rights & Account Deletion</h3>
+            <p>You have the right to access, modify, or delete your personal information at any time. To request a full deletion of your account and all associated garden data, please contact us at support@budx.info.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 BudX App. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
