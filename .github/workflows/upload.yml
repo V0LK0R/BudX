@@ -1,7 +1,7 @@
 name: Upload BudX IPA to App Store Connect
 
 on:
-  workflow_dispatch: # Allows manual trigger from GitHub UI
+  workflow_dispatch:
 
 jobs:
   upload:
@@ -22,10 +22,9 @@ jobs:
           mkdir -p ~/.appstoreconnect/private_keys
           echo "${{ secrets.APP_STORE_CONNECT_API_KEY }}" > ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
 
-      - name: Upload IPA using xcrun
+      - name: Upload IPA using Transporter
         run: |
-          xcrun altool --upload-app \
-            --type ios \
-            -f "BudX.ipa" \
-            --apiKey "${{ secrets.APP_STORE_CONNECT_KEY_ID }}" \
-            --apiIssuer "${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}"
+          xcrun iTMSTransporter -m upload \
+            -assetFile "BudX.ipa" \
+            -apiKey "${{ secrets.APP_STORE_CONNECT_KEY_ID }}" \
+            -apiIssuer "${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}"
